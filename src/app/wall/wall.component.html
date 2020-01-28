@@ -1,0 +1,48 @@
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-4 my-2">
+            <button
+                type="button"
+                class="btn btn-primary btn-block"
+                (click)="logout()"
+            >
+                Log out
+            </button>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-8 my-2">
+            <div class="input-group flex-nowrap">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">🔍</span>
+                </div>
+                <input
+                    type="text"
+                    [formControl]="search"
+                    class="form-control"
+                    placeholder="search"
+                    aria-label="search"
+                />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div
+            class="col-sm-12 col-md-6 col-lg-4 my-2 d-flex align-items-stretch"
+            *ngFor="let tweet of visibleTweets; let i = index"
+        >
+            <div
+                class="card text-center w-100"
+                [routerLink]="['/posts', tweet.getId()]"
+            >
+                <div class="card-body">
+                    <h5 class="card-title">
+                        UserId: {{ tweet.getAuthor().getName() }}
+                    </h5>
+                    <p class="card-text">Title: {{ tweet.getTitle() }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

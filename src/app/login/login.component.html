@@ -1,0 +1,83 @@
+<div class="container my-5">
+    <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+            <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Username</label>
+                    <input
+                        class="form-control"
+                        [ngClass]="{
+                            'is-invalid': username.errors && username.touched
+                        }"
+                        formControlName="username"
+                    />
+                    <div
+                        class="invalid-feedback"
+                        *ngIf="username.errors?.minlength"
+                    >
+                        Username must be at least 5 characters long
+                    </div>
+                    <div
+                        class="invalid-feedback"
+                        *ngIf="username.errors?.required && username.touched"
+                    >
+                        Username is required
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input
+                        class="form-control"
+                        formControlName="password"
+                        type="password"
+                        [ngClass]="{
+                            'is-invalid': password.errors && password.touched
+                        }"
+                    />
+
+                    <ng-container *ngIf="password.touched">
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="password.errors?.minlength"
+                        >
+                            Password must be at least 8 characters long
+                        </div>
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="password.errors?.missingSmallLetter"
+                        >
+                            Password must contain at least one small letter
+                        </div>
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="password.errors?.missingLargeLetter"
+                        >
+                            Password must contain at least one large letter
+                        </div>
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="password.errors?.missingNumber"
+                        >
+                            Password must contain at least digit
+                        </div>
+                        <div
+                            class="invalid-feedback"
+                            *ngIf="password.errors?.required"
+                        >
+                            Password is required
+                        </div>
+                    </ng-container>
+                </div>
+                <div class="text-center">
+                    <button
+                        type="submit"
+                        [disabled]="loginForm.invalid"
+                        class="btn btn-primary"
+                    >
+                        Sign in
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12 my-2">
+            <button
+                type="button"
+                class="btn btn-primary btn-block"
+                [routerLink]="['/posts']"
+            >
+                Go back
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <h1 class="text-center my-5">Details</h1>
+    <p>Id: {{ tweet?.getId() }}</p>
+    <p>UserId: {{ tweet?.getAuthor()?.getName() }}</p>
+    <p>Title: {{ tweet?.getTitle() }}</p>
+    <p>Body: {{ tweet?.getBody() }}</p>
+</div>
